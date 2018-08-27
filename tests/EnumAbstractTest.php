@@ -30,11 +30,27 @@ class EnumAbstractTest extends TestCase
 
     /**
      * @expectedException \PHP7Enum\UnexpectedValueException
-     * @expectedExceptionMessage Invalid value "UNKNOWN" for enum "Test\PHP7Enum\Fixtures\StatusEnum"
+     * @expectedExceptionMessage Invalid name "UNKNOWN" for enum "Test\PHP7Enum\Fixtures\StatusEnum"
      */
     public function testInvalidValue()
     {
         StatusEnum::UNKNOWN();
+    }
+
+    public function testFromValue()
+    {
+        $draft = StatusEnum::fromValue('draft');
+        $this->assertInstanceOf(StatusEnum::class, $draft);
+        $this->assertSame(StatusEnum::DRAFT(), $draft);
+    }
+
+    /**
+     * @expectedException \PHP7Enum\UnexpectedValueException
+     * @expectedExceptionMessage Invalid value "foobar" for enum "Test\PHP7Enum\Fixtures\StatusEnum"
+     */
+    public function testFromInvalidValue()
+    {
+        StatusEnum::fromValue('foobar');
     }
 
     /**
