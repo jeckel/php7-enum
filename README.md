@@ -50,3 +50,11 @@ echo ($draft === StatusEnum::DRAFT()) ? 'true' : 'false'; //true
 
 ?>
 ```
+
+
+# Run tests
+
+
+```bash
+docker run -v `pwd`:/project --rm -it --workdir /project php:alpine php vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+```
