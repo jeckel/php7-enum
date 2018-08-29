@@ -65,4 +65,10 @@ class EnumAbstractTest extends TestCase
         ];
         $this->assertEquals($expected, StatusEnum::toArray());
     }
+
+    public function testJsonSerialize()
+    {
+        $draft = StatusEnum::DRAFT();
+        $this->assertEquals('"draft"', json_encode($draft));
+    }
 }
