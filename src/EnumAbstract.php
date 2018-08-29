@@ -6,7 +6,7 @@ namespace PHP7Enum;
  *
  * This class allow to create Real Enum type, you can then easily validate that force a value to be in the required type
  */
-class EnumAbstract
+class EnumAbstract implements \JsonSerializable
 {
     /** @var array */
     static protected $allowedValues = [];
@@ -56,6 +56,14 @@ class EnumAbstract
     public function __toString(): string
     {
         return (string) $this->value;
+    }
+
+    /**
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        return $this->getValue();
     }
 
     /**
